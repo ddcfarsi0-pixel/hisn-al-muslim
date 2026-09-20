@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>حصن المسلم | اذکار و دعاهای مسنون</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Vazirmatn & Scheherazade New -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        amber: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        sand: {
+                            50: '#fdfbf7',
+                            100: '#f7f4ec',
+                            800: '#2c2825',
+                            900: '#1c1917',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                        arabic: ['Scheherazade New', 'Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .font-arabic {
+            font-family: 'Scheherazade New', serif;
+            line-height: 2.2;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
+            border-radius: 4px;
+        }
+        /* Animations */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .pulse-ring {
+            animation: pulse-ring 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-sand-50 dark:bg-sand-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-200">
+
+    <!-- App Header -->
+    <header class="sticky top-0 z-30 bg-white/90 dark:bg-sand-900/90 backdrop-blur-md border-b border-emerald-100 dark:border-emerald-900/30 px-4 py-3 flex items-center justify-between shadow-sm">
+        <div class="flex items-center gap-3">
+            <button id="btn-menu" class="w-10 h-10 rounded-full flex items-center justify-center text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-sand-800 transition">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-emerald-600/30">
+                    ح
+                </div>
+                <div>
+                    <h1 class="font-bold text-base text-emerald-900 dark:text-emerald-300 leading-tight">حصن المسلم</h1>
+                    <p class="text-[10px] text-slate-500 dark:text-slate-400">اذکار و دعاهای مسنون (صحیحین)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-1">
+            <button id="btn-search-trigger" class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-sand-800 transition">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button id="btn-focus-mode" title="حالت ذکر" class="w-10 h-10 rounded-full flex items-center justify-center text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-sand-800 transition">
+                <i class="fa-solid fa-[#000] fa-bullseye"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-container" class="flex-1 pb-20 max-w-md mx-auto w-full px-4 pt-4">
+        
+        <!-- View 1: TODAY DASHBOARD -->
+        <section id="view-today" class="view-panel space-y-5">
+            <!-- Hero Card: Daily Dhikr -->
+            <div class="relative overflow-hidden bg-gradient-to-br from-emerald-700 via-emerald-800 to-emerald-900 text-white rounded-2xl p-5 shadow-lg shadow-emerald-900/20">
+                <div class="absolute top-0 left-0 -translate-x-4 -translate-y-4 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                <div class="flex justify-between items-start mb-3">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-600/60 backdrop-blur-sm border border-emerald-500/30">
+                        <i class="fa-solid fa-sun text-amber-300"></i> ذکر امروز
+                    </span>
+                    <button id="btn-share-daily" class="text-white/80 hover:text-white transition">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </button>
+                </div>
+                <p id="daily-dhikr-arabic" class="font-arabic text-xl md:text-2xl text-center my-3 leading-relaxed text-amber-100">
+                    سُبْحَانَ اللَّهِ وَبِحَمْدِهِ ، سُبْحَانَ اللَّهِ الْعَظِيمِ
+                </p>
+                <p id="daily-dhikr-trans" class="text-xs text-emerald-100/90 text-center line-clamp-2">
+                    پاک و منزه است خدایی که ستایش از آنِ اوست، و پاک و منزه است خدای بزرگ.
+                </p>
+                <div class="mt-4 pt-3 border-t border-emerald-600/40 flex justify-between items-center text-xs text-emerald-200">
+                    <span>منبع: صحیح بخاری (۶۴۰۵)</span>
+                    <button id="btn-quick-count-daily" class="px-3 py-1 bg-white text-emerald-800 font-bold rounded-lg hover:bg-emerald-50 transition shadow-sm">
+                        شروع ذکر <i class="fa-solid fa-arrow-left text-[10px] mr-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Action Cards: Morning/Evening/Sleep -->
+            <div class="grid grid-cols-3 gap-3">
+                <button data-action="open-dhikr-sequence" data-type="morning" class="bg-white dark:bg-sand-800 p-3.5 rounded-2xl border border-slate-100 dark:border-sand-800 flex flex-col items-center gap-2 shadow-sm hover:shadow-md transition group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-700 dark:text-slate-200">اذکار صبح</span>
+                    <span id="badge-morning-count" class="text-[10px] text-slate-400">۱۱ ذکر معتبر</span>
+                </button>
+
+                <button data-action="open-dhikr-sequence" data-type="evening" class="bg-white dark:bg-sand-800 p-3.5 rounded-2xl border border-slate-100 dark:border-sand-800 flex flex-col items-center gap-2 shadow-sm hover:shadow-md transition group">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-700 dark:text-slate-200">اذکار شام</span>
+                    <span id="badge-evening-count" class="text-[10px] text-slate-400">۹ ذکر معتبر</span>
+                </button>
+
+                <button data-action="open-dhikr-sequence" data-type="sleep" class="bg-white dark:bg-sand-800 p-3.5 rounded-2xl border border-slate-100 dark:border-sand-800 flex flex-col items-center gap-2 shadow-sm hover:shadow-md transition group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-bed"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-700 dark:text-slate-200">اذکار خواب</span>
+                    <span id="badge-sleep-count" class="text-[10px] text-slate-400">۷ ذکر معتبر</span>
+                </button>
+            </div>
+
+            <!-- Sahihayn Highlight Section -->
+            <div class="bg-white dark:bg-sand-800 rounded-2xl p-4 border border-slate-100 dark:border-sand-800 shadow-sm">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="font-bold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-book-bookmark text-emerald-600"></i> دعاهای صحیحین
+                    </h2>
+                    <button data-view="sahihayn" class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold hover:underline">
+                        مشاهده همه <i class="fa-solid fa-chevron-left text-[9px]"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <button data-sahih="bukhari" class="p-3 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/40 text-right flex flex-col justify-between hover:border-emerald-300 transition">
+                        <div>
+                            <span class="font-bold text-emerald-800 dark:text-emerald-300 block mb-1">صحیح بخاری</span>
+                            <span class="text-[10px] text-slate-500 dark:text-slate-400">احادیث و ادعیه معتبر</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-left text-emerald-600 self-end mt-2"></i>
+                    </button>
+                    <button data-sahih="muslim" class="p-3 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/40 text-right flex flex-col justify-between hover:border-indigo-300 transition">
+                        <div>
+                            <span class="font-bold text-indigo-800 dark:text-indigo-300 block mb-1">صحیح مسلم</span>
+                            <span class="text-[10px] text-slate-500 dark:text-slate-400">احادیث و ادعیه معتبر</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-left text-indigo-600 self-end mt-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Items / Favorites Preview -->
+            <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-sm text-slate-800 dark:text-slate-100">آخرین دعاهای بازدید شده</h3>
+                    <button data-view="history" class="text-xs text-slate-500 hover:text-emerald-600">تاریخچه</button>
+                </div>
+                <div id="recent-list-container" class="space-y-2">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- View 2: CATEGORIES & DUA LIST -->
+        <section id="view-categories" class="view-panel hidden space-y-4">
+            <div class="flex items-center justify-between">
+                <h2 class="font-bold text-lg text-slate-800 dark:text-slate-100">دسته‌بندی‌های جامع</h2>
+                <span id="category-count-badge" class="text-xs bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 px-2.5 py-1 rounded-full font-medium">۲۸ دسته</span>
+            </div>
+
+            <!-- Category Grid -->
+            <div id="categories-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <!-- Dynamic categories loaded via JS -->
+            </div>
+        </section>
+
+        <!-- View 3: SAHIHAYN (Bukhari & Muslim) -->
+        <section id="view-sahihayn" class="view-panel hidden space-y-4">
+            <div class="bg-gradient-to-r from-emerald-800 to-indigo-900 text-white rounded-2xl p-4 shadow-md">
+                <h2 class="font-bold text-lg mb-1 flex items-center gap-2">
+                    <i class="fa-solid fa-certificate text-amber-400"></i> صحیحین (بخاری و مسلم)
+                </h2>
+                <p class="text-xs text-slate-200 leading-relaxed">
+                    مجموعه دعاهای کاملاً صحیح و اثبات‌شده از اعلی‌ترین درجه اعتبار حدیثی اهل‌سنت با ذکر دقیق شماره حدیث، کتاب و باب.
+                </p>
+            </div>
+
+            <!-- Tabs for Bukhari / Muslim / Both -->
+            <div class="flex rounded-xl bg-slate-200/70 dark:bg-sand-800 p-1 text-xs font-bold">
+                <button id="tab-sahih-all" class="flex-1 py-2 rounded-lg bg-white dark:bg-sand-900 text-emerald-700 dark:text-emerald-400 shadow-sm transition">همه (مشترک)</button>
+                <button id="tab-sahih-bukhari" class="flex-1 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 transition">صحیح بخاری</button>
+                <button id="tab-sahih-muslim" class="flex-1 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 transition">صحیح مسلم</button>
+            </div>
+
+            <div id="sahihayn-list" class="space-y-3">
+                <!-- Dynamic Sahihayn Dua Cards -->
+            </div>
+        </section>
+
+        <!-- View 4: DEDICATED TASBEEH COUNTER -->
+        <section id="view-counter" class="view-panel hidden space-y-5">
+            <div class="bg-white dark:bg-sand-800 rounded-3xl p-6 border border-slate-100 dark:border-sand-800 shadow-lg text-center flex flex-col items-center relative overflow-hidden">
+                
+                <!-- Target selector -->
+                <div class="w-full flex justify-between items-center mb-4 text-xs">
+                    <span class="text-slate-500">هدف ذکر:</span>
+                    <select id="counter-target-select" class="bg-slate-100 dark:bg-sand-900 text-slate-800 dark:text-slate-200 font-bold px-3 py-1.5 rounded-xl border-none outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="33">۳۳ بار</option>
+                        <option value="100">۱۰۰ بار</option>
+                        <option value="3">۳ بار</option>
+                        <option value="10">۱۰ بار</option>
+                        <option value="1000">۱۰۰۰ بار (آزاد)</option>
+                    </select>
+                </div>
+
+                <!-- Select Active Dhikr Text -->
+                <div id="counter-dhikr-selector" class="w-full bg-sand-50 dark:bg-sand-900 p-3 rounded-2xl mb-4 border border-emerald-100 dark:border-emerald-900/30">
+                    <p id="counter-active-arabic" class="font-arabic text-xl font-bold text-emerald-800 dark:text-emerald-300">سُبْحَانَ اللَّهِ</p>
+                    <p id="counter-active-trans" class="text-xs text-slate-500 dark:text-slate-400 mt-1">پاک و منزه است الله</p>
+                </div>
+
+                <!-- Big Interactive Counter Button -->
+                <button id="btn-counter-tap" class="relative my-4 w-48 h-48 rounded-full bg-gradient-to-tr from-emerald-600 to-emerald-500 dark:from-emerald-700 dark:to-emerald-600 text-white shadow-xl shadow-emerald-600/30 flex flex-col items-center justify-center border-8 border-emerald-100 dark:border-emerald-900/50 active:scale-95 transition-transform cursor-pointer">
+                    <span id="counter-big-val" class="text-5xl font-extrabold tracking-tight">۰</span>
+                    <span id="counter-target-label" class="text-xs text-emerald-100 mt-1">از ۳۳</span>
+                </button>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-100 dark:bg-sand-900 rounded-full h-2.5 my-2 overflow-hidden">
+                    <div id="counter-progress-bar" class="bg-emerald-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="flex items-center gap-4 mt-4 w-full justify-center">
+                    <button id="btn-counter-minus" class="p-3 rounded-2xl bg-slate-100 dark:bg-sand-900 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition text-sm flex items-center gap-1 font-medium">
+                        <i class="fa-solid fa-minus"></i> کاهش
+                    </button>
+                    <button id="btn-counter-reset" class="p-3 rounded-2xl bg-rose-50 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 hover:bg-rose-100 transition text-sm flex items-center gap-1 font-medium">
+                        <i class="fa-solid fa-rotate-right"></i> بازنشانی
+                    </button>
+                    <button id="btn-counter-sound" class="p-3 rounded-2xl bg-slate-100 dark:bg-sand-900 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition text-sm">
+                        <i id="icon-counter-sound" class="fa-solid fa-volume-high"></i>
+                    </button>
+                    <button id="btn-counter-vibrate" class="p-3 rounded-2xl bg-slate-100 dark:bg-sand-900 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition text-sm">
+                        <i id="icon-counter-vibrate" class="fa-solid fa-mobile-screen-button"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- View 5: USER STATS & HISTORY -->
+        <section id="view-stats" class="view-panel hidden space-y-4">
+            <h2 class="font-bold text-lg text-slate-800 dark:text-slate-100">گزارش و آمار من</h2>
+
+            <!-- Summary Grid -->
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white dark:bg-sand-800 p-4 rounded-2xl border border-slate-100 dark:border-sand-800 shadow-sm flex flex-col justify-between">
+                    <span class="text-xs text-slate-500">کل اذکار انجام شده</span>
+                    <span id="stat-total-dhikr" class="text-2xl font-extrabold text-emerald-700 dark:text-emerald-400 mt-2">۰</span>
+                </div>
+                <div class="bg-white dark:bg-sand-800 p-4 rounded-2xl border border-slate-100 dark:border-sand-800 shadow-sm flex flex-col justify-between">
+                    <span class="text-xs text-slate-500">روزهای مداومت (Streak)</span>
+                    <span id="stat-streak-days" class="text-2xl font-extrabold text-amber-600 dark:text-amber-400 mt-2">۱ روز</span>
+                </div>
+            </div>
+
+            <!-- Weekly Progress Bar Chart Simulation -->
+            <div class="bg-white dark:bg-sand-800 p-4 rounded-2xl border border-slate-100 dark:border-sand-800 shadow-sm space-y-3">
+                <h3 class="text-xs font-bold text-slate-700 dark:text-slate-300">پیشرفت ۷ روز گذشته</h3>
+                <div id="weekly-chart" class="flex justify-between items-end h-28 pt-4 px-2">
+                    <!-- Dynamic Bars via JS -->
+                </div>
+            </div>
+
+            <!-- Favorites Tab Container -->
+            <div class="bg-white dark:bg-sand-800 rounded-2xl p-4 border border-slate-100 dark:border-sand-800 shadow-sm space-y-3">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
+                        <i class="fa-solid fa-heart text-rose-500"></i> علاقه‌مندی‌های من
+                    </h3>
+                    <span id="favorites-count-badge" class="text-xs text-slate-400">۰ مورد</span>
+                </div>
+                <div id="favorites-list-container" class="space-y-2">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Overlay 1: SEQUENCE READER (Morning/Evening/Sleep step-by-step) -->
+        <div id="overlay-sequence" class="fixed inset-0 bg-sand-50 dark:bg-sand-900 z-50 hidden flex flex-col">
+            <!-- Reader Top Bar -->
+            <div class="p-4 bg-white dark:bg-sand-800 border-b border-slate-100 dark:border-sand-700 flex items-center justify-between shadow-sm">
+                <button id="btn-close-sequence" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-sand-700 flex items-center justify-center text-slate-600 dark:text-slate-300">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="text-center">
+                    <h3 id="sequence-title" class="font-bold text-sm text-slate-800 dark:text-slate-100">اذکار صبح</h3>
+                    <p id="sequence-counter-label" class="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">ذکر ۱ از ۱۱</p>
+                </div>
+                <button id="btn-sequence-share" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-sand-700 flex items-center justify-center text-slate-600 dark:text-slate-300">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+            </div>
+
+            <!-- Reader Body -->
+            <div class="flex-1 overflow-y-auto p-5 flex flex-col justify-between max-w-md mx-auto w-full space-y-6">
+                <div class="space-y-4 my-auto">
+                    <!-- Source Badge -->
+                    <div class="flex items-center justify-between">
+                        <span id="seq-source-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300">
+                            صحیح بخاری
+                        </span>
+                        <span id="seq-repeat-badge" class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-lg">
+                            تکرار: ۳ بار
+                        </span>
+                    </div>
+
+                    <!-- Arabic Text -->
+                    <div class="bg-white dark:bg-sand-800 p-6 rounded-3xl border border-slate-100 dark:border-sand-700 shadow-sm text-center">
+                        <p id="seq-arabic-text" class="font-arabic text-2xl md:text-3xl font-bold text-emerald-900 dark:text-emerald-200 leading-relaxed">
+                            --
+                        </p>
+                    </div>
+
+                    <!-- Translation Text -->
+                    <div class="bg-white/60 dark:bg-sand-800/60 p-4 rounded-2xl text-slate-700 dark:text-slate-300 text-sm leading-relaxed border border-slate-100 dark:border-sand-800">
+                        <p id="seq-trans-text">--</p>
+                    </div>
+
+                    <!-- Narrator & Book details -->
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400 space-y-1 bg-slate-100/50 dark:bg-sand-800/30 p-3 rounded-xl">
+                        <p id="seq-narrator">راوی: --</p>
+                        <p id="seq-book-chapter">کتاب: -- | باب: --</p>
+                    </div>
+                </div>
+
+                <!-- Reader Interactive Counter -->
+                <div class="space-y-3 pt-2">
+                    <button id="btn-seq-count-tap" class="w-full py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-3 active:scale-[0.98] transition">
+                        <span>ذکر بزنید</span>
+                        <span id="seq-count-progress" class="px-3 py-0.5 rounded-full bg-white/20 text-sm">۰ / ۳</span>
+                    </button>
+
+                    <div class="flex items-center justify-between gap-3">
+                        <button id="btn-seq-prev" class="flex-1 py-2.5 rounded-xl border border-slate-300 dark:border-sand-700 text-xs font-bold text-slate-700 dark:text-slate-300 disabled:opacity-40">
+                            <i class="fa-solid fa-chevron-right ml-1"></i> قبلی
+                        </button>
+                        <button id="btn-seq-next" class="flex-1 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 text-xs font-bold disabled:opacity-40">
+                            بعدی <i class="fa-solid fa-chevron-left mr-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Focus Mode Screen -->
+        <div id="overlay-focus" class="fixed inset-0 bg-sand-900 text-slate-100 z-50 hidden flex flex-col justify-between p-6">
+            <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-emerald-400 tracking-wider">حالت تمرکز (ذکر)</span>
+                <button id="btn-close-focus" class="w-10 h-10 rounded-full bg-sand-800 flex items-center justify-center text-slate-300">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="my-auto text-center space-y-8">
+                <p id="focus-arabic-text" class="font-arabic text-3xl md:text-4xl leading-relaxed text-amber-100 px-2">
+                    سُبْحَانَ اللَّهِ وَبِحَمْدِهِ
+                </p>
+
+                <button id="btn-focus-tap" class="w-40 h-40 mx-auto rounded-full bg-emerald-600 flex flex-col items-center justify-center shadow-2xl shadow-emerald-600/50 active:scale-95 transition-transform">
+                    <span id="focus-count-val" class="text-4xl font-black text-white">۰</span>
+                    <span class="text-xs text-emerald-200 mt-1">لمس کنید</span>
+                </button>
+            </div>
+
+            <div class="text-center text-xs text-slate-500">
+                جهت خروج دکمه بستن را لمس کنید
+            </div>
+        </div>
+
+        <!-- Search Overlay Modal -->
+        <div id="overlay-search" class="fixed inset-0 bg-sand-50/95 dark:bg-sand-900/95 backdrop-blur-md z-50 hidden flex flex-col">
+            <div class="p-4 bg-white dark:bg-sand-800 shadow-sm border-b border-slate-100 dark:border-sand-700 flex items-center gap-3">
+                <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                <input id="search-input" type="text" placeholder="جستجو در متن عربی، ترجمه، راوی، شماره حدیث..." class="flex-1 bg-transparent border-none outline-none text-sm text-slate-800 dark:text-slate-100">
+                <button id="btn-close-search" class="text-xs text-slate-500 font-bold px-2 py-1">انصراف</button>
+            </div>
+
+            <div id="search-results-container" class="flex-1 overflow-y-auto p-4 space-y-3 max-w-md mx-auto w-full">
+                <p class="text-xs text-slate-400 text-center py-8">عبارت مورد نظر خود را وارد کنید (مثلاً: «رزق»، «بخاری»، «آیة الکرسی»)</p>
+            </div>
+        </div>
+
+        <!-- Settings / Menu Drawer Overlay -->
+        <div id="drawer-menu" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden transition-opacity">
+            <div class="w-4/5 max-w-xs bg-white dark:bg-sand-900 h-full p-5 flex flex-col justify-between overflow-y-auto shadow-2xl">
+                <div class="space-y-6">
+                    <!-- Drawer Header -->
+                    <div class="flex items-center gap-3 border-b border-slate-100 dark:border-sand-800 pb-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white font-bold flex items-center justify-center text-xl">
+                            ح
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-800 dark:text-slate-100">حصن المسلم</h3>
+                            <p class="text-[10px] text-slate-400">نسخه ۱.۰.۰ (آماده Android)</p>
+                        </div>
+                    </div>
+
+                    <!-- Menu Nav Links -->
+                    <nav class="space-y-1 text-xs font-semibold">
+                        <button data-drawer-nav="today" class="w-full text-right py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-sand-800 flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-house text-emerald-600"></i> امروز
+                        </button>
+                        <button data-drawer-nav="categories" class="w-full text-right py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-sand-800 flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-layer-group text-emerald-600"></i> دسته‌بندی‌ها
+                        </button>
+                        <button data-drawer-nav="sahihayn" class="w-full text-right py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-sand-800 flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-book-bookmark text-emerald-600"></i> صحیحین (بخاری و مسلم)
+                        </button>
+                        <button data-drawer-nav="counter" class="w-full text-right py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-sand-800 flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-calculator text-emerald-600"></i> شمارنده تسبیح
+                        </button>
+                        <button data-drawer-nav="stats" class="w-full text-right py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-sand-800 flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-chart-pie text-emerald-600"></i> گزارش و آمار
+                        </button>
+                        <button id="btn-open-about" class="w-full text-right py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-sand-800 flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-circle-info text-emerald-600"></i> درباره برنامه
+                        </button>
+                    </nav>
+
+                    <hr class="border-slate-100 dark:border-sand-800">
+
+                    <!-- Settings Controls -->
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-slate-400">تنظیمات برنامه</h4>
+
+                        <!-- Dark Mode Toggle -->
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-700 dark:text-slate-300">حالت شب</span>
+                            <select id="setting-theme" class="bg-slate-100 dark:bg-sand-800 text-xs px-2 py-1 rounded-lg outline-none">
+                                <option value="system">سیستم</option>
+                                <option value="light">روشن</option>
+                                <option value="dark">تاریک</option>
+                            </select>
+                        </div>
+
+                        <!-- Font Size Adjustment -->
+                        <div class="space-y-1.5 text-xs">
+                            <div class="flex justify-between text-slate-700 dark:text-slate-300">
+                                <span>اندازه قلم عربی:</span>
+                                <span id="font-size-label">۲۴px</span>
+                            </div>
+                            <input id="setting-font-size" type="range" min="18" max="36" value="24" class="w-full accent-emerald-600">
+                        </div>
+
+                        <!-- Notification Reminder Options -->
+                        <div class="space-y-2 text-xs">
+                            <span class="text-slate-700 dark:text-slate-300 block font-bold">زمان یادآوری‌ها:</span>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-500">اذکار صبح:</span>
+                                <input id="remind-time-morning" type="time" value="06:30" class="bg-slate-100 dark:bg-sand-800 px-2 py-0.5 rounded border-none">
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-500">اذکار شام:</span>
+                                <input id="remind-time-evening" type="time" value="18:00" class="bg-slate-100 dark:bg-sand-800 px-2 py-0.5 rounded border-none">
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-500">اذکار خواب:</span>
+                                <input id="remind-time-sleep" type="time" value="22:30" class="bg-slate-100 dark:bg-sand-800 px-2 py-0.5 rounded border-none">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Info -->
+                <div class="pt-4 border-t border-slate-100 dark:border-sand-800 text-[10px] text-slate-400 space-y-1">
+                    <p class="font-semibold text-slate-600 dark:text-slate-300">طراحی و توسعه: فضل الحق احمدی</p>
+                    <p>بر اساس منابع اصیل اهل‌سنت (صحیحین و سنن)</p>
+                    <p>© التماس دعای خیر برای بنده و والدین</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Modal / Overlay -->
+        <div id="overlay-about" class="fixed inset-0 bg-sand-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-sand-800 max-w-sm w-full rounded-3xl p-6 border border-slate-100 dark:border-sand-700 shadow-2xl text-center space-y-4 relative overflow-hidden">
+                <button id="btn-close-about" class="absolute top-4 left-4 w-8 h-8 rounded-full bg-slate-100 dark:bg-sand-700 flex items-center justify-center text-slate-500 dark:text-slate-300">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+
+                <div class="w-16 h-16 rounded-2xl bg-emerald-600 text-white font-black text-3xl flex items-center justify-center mx-auto shadow-lg shadow-emerald-600/30">
+                    ح
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg text-emerald-900 dark:text-emerald-300">حصن المسلم</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">اپلیکیشن جامع اذکار و دعاهای مسنون</p>
+                </div>
+
+                <div class="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/50 p-4 rounded-2xl text-xs text-slate-700 dark:text-slate-200 leading-relaxed text-right space-y-2">
+                    <p class="font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-heart text-rose-500"></i> درباره سازنده و پیام برنامه:
+                    </p>
+                    <p>
+                        این نرم‌افزار مبارک به هدف تسهیل دستیابی مسلمانان به اذکار صحیح و ادعیه مسنونه رسول‌الله ﷺ و انبیاء الهی بر اساس احادیث معتبر (صحیح بخاری، صحیح مسلم و سنن معتبره) تهیه گردیده است.
+                    </p>
+                    <p class="font-semibold text-emerald-700 dark:text-emerald-400 pt-1 border-t border-emerald-200/50 dark:border-emerald-800/50">
+                        التماس دعای خیر
+                        <br>
+                        برادر شما: <span class="font-bold underline decoration-amber-500">فضل الحق احمدی</span>
+                    </p>
+                </div>
+
+                <div class="text-[11px] text-slate-400">
+                    جزاکم الله خیراً کثیراً و بارک الله фиکم
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-sand-900/95 backdrop-blur-md border-t border-slate-100 dark:border-sand-800 px-3 py-2 flex justify-around items-center max-w-md mx-auto">
+        <button data-nav="today" class="nav-btn active flex flex-col items-center gap-1 text-emerald-600 dark:text-emerald-400">
+            <i class="fa-solid fa-house text-base"></i>
+            <span class="text-[10px] font-bold">امروز</span>
+        </button>
+
+        <button data-nav="categories" class="nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-emerald-600 transition">
+            <i class="fa-solid fa-layer-group text-base"></i>
+            <span class="text-[10px] font-medium">دسته ها</span>
+        </button>
+
+        <button data-nav="sahihayn" class="nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-emerald-600 transition">
+            <i class="fa-solid fa-book-bookmark text-base"></i>
+            <span class="text-[10px] font-medium">صحیحین</span>
+        </button>
+
+        <button data-nav="counter" class="nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-emerald-600 transition">
+            <i class="fa-solid fa-calculator text-base"></i>
+            <span class="text-[10px] font-medium">شمارنده</span>
+        </button>
+
+        <button data-nav="stats" class="nav-btn flex flex-col items-center gap-1 text-slate-400 hover:text-emerald-600 transition">
+            <i class="fa-solid fa-chart-pie text-base"></i>
+            <span class="text-[10px] font-medium">آمار</span>
+        </button>
+    </nav>
+
+    <script>
+        const AUTHENTIC_DATABASE = [
+            // MORNING ADHKAR (کاملاً مسنون و جامع)
+            {
+                id: 'm1',
+                title: 'آیة الکرسی (محافظت کامل روزانه)',
+                arabicText: 'اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلاَّ بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ',
+                translation: 'خداوند است که هیچ معبود برحقی جز او نیست؛ زنده و برپا دارنده است؛ نه چرتى او را فرا می‌گیرد و نه خوابى؛ آنچه در آسمان‌ها و زمین است از آنِ اوست...',
+                category: 'morning',
+                source: 'عمل اليوم والليلة للنسائي (100) - صحيح',
+                book: 'تفسیر / اذکار',
+                chapter: 'فضل آية الكرسي',
+                hadithNumber: '100',
+                narrator: 'أبي بن كعب رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'صبحگاهان - ۱ بار'
+            },
+            {
+                id: 'm2',
+                title: 'سوره های معوذات (اخلاص، فلق، ناس)',
+                arabicText: 'قُلْ هُوَ اللَّهُ أَحَدٌ... قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ... قُلْ أَعُوذُ بِرَبِّ النَّاسِ...',
+                translation: 'بگو اوست خدای یکتا... بگو پناه می‌برم به پروردگار سپیده دم... بگو پناه می‌برم به پروردگار مردم...',
+                category: 'morning',
+                source: 'سنن أبي داود (5082) وسنن الترمذي (3575)',
+                book: 'الأدب',
+                chapter: 'ما يقول إذا أصبح',
+                hadithNumber: '5082',
+                narrator: 'عبدالله بن خبيب رضي الله عنه',
+                repeatCount: 3,
+                timeContext: 'صبح و شام (۳ بار - کفایت از هر شر)'
+            },
+            {
+                id: 'm3',
+                title: 'سید الاستغفار (آقای تمام استغفارها)',
+                arabicText: 'اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ',
+                translation: 'بار خدایا! تو پروردگار منی، هیچ معبودی به حق جز تو نیست. مرا آفریدی و من بنده توام، و تا جایی که بتوانم بر پیمان و وعده‌ام با تو استوارم...',
+                category: 'morning',
+                source: 'صحیح البخاری',
+                book: 'الدعوات',
+                chapter: 'أفضل الاستغفار',
+                hadithNumber: '6306',
+                narrator: 'شداد بن أوس رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'هر صبح و شام (ضمانت بهشت)'
+            },
+            {
+                id: 'm4',
+                title: 'ذکر پادشاهی و توحید صبحگاهان',
+                arabicText: 'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ',
+                translation: 'ما و تمام فرمانروایی جهان برای خدا به صبح رسیدیم، و سپاس از آنِ خداست. هیچ معبودی جز الله نیست که یگانه است و شریکی ندارد...',
+                category: 'morning',
+                source: 'صحیح مسلم',
+                book: 'الذکر والدعاء',
+                chapter: 'التعوذ من شر ما عمل',
+                hadithNumber: '2723',
+                narrator: 'عبدالله بن مسعود رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'ابتدای صبح'
+            },
+            {
+                id: 'm5',
+                title: 'رضایت به پروردگاری الله، اسلام و پیامبر ﷺ',
+                arabicText: 'رَضِيتُ بِاللَّهِ رَبًّا، وَبِالإِسْلاَمِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا',
+                translation: 'خشنود و راضی‌ام به اینکه الله پروردگارم، اسلام دینم و محمد ﷺ پیامبرم باشد.',
+                category: 'morning',
+                source: 'سنن أبي داود (5072) وصحيح مسلم (1884)',
+                book: 'الأدب',
+                chapter: 'ما يقول إذا أصبح',
+                hadithNumber: '5072',
+                narrator: 'أبو سعيد الخدري رضي الله عنه',
+                repeatCount: 3,
+                timeContext: 'صبح و شام (۳ بار - خشنودی خدا)'
+            },
+            {
+                id: 'm6',
+                title: 'حرز ایمنی از هر زیان در زمین و آسمان',
+                arabicText: 'بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ',
+                translation: 'به نام خدایی که با نام او هیچ چیز در زمین و آسمان زیان نمی‌رساند و او شنوا و داناست.',
+                category: 'morning',
+                source: 'سنن أبي داود (5088) وسنن الترمذي (3388) - صحيح',
+                book: 'الأدب',
+                chapter: 'ما يقول إذا أصبح',
+                hadithNumber: '5088',
+                narrator: 'عثمان بن عفان رضي الله عنه',
+                repeatCount: 3,
+                timeContext: 'صبح و شام (۳ بار - ایمنی از بلاهای ناگهانی)'
+            },
+            {
+                id: 'm7',
+                title: 'طلب عافیت و امنیت جامع در دنیا و آخرت',
+                arabicText: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي وَآمِنْ رَوْعَاتِي',
+                translation: 'بار خدایا! من از تو عفو و عافیت در دنیا و آخرت می‌خواهم. خدایا! از تو بخشش و سلامتی در دین، دنیا، خانواده و مالم را می‌طلبم...',
+                category: 'morning',
+                source: 'سنن أبي داود (5074) وابن ماجه (3871) - صحيح',
+                book: 'الأدب',
+                chapter: 'ما يقول إذا أصبح',
+                hadithNumber: '5074',
+                narrator: 'عبدالله بن عمر رضي الله عنهما',
+                repeatCount: 1,
+                timeContext: 'صبح و شام'
+            },
+            {
+                id: 'm8',
+                title: 'تسبیح ۱۰۰ مرتبه‌ای صبحگاهان',
+                arabicText: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
+                translation: 'پاک و منزه است خداوند و ستایش برای اوست.',
+                category: 'morning',
+                source: 'صحیح مسلم',
+                book: 'الذکر والدعاء',
+                chapter: 'فضل التسبيح',
+                hadithNumber: '2692',
+                narrator: 'أبو هريرة رضي الله عنه',
+                repeatCount: 100,
+                timeContext: 'صبح و شام (۱۰۰ بار - بخشش گناهان)'
+            },
+            {
+                id: 'm9',
+                title: 'تسبیح سنگین‌تر از همه اذکار (عظمت آفرینش)',
+                arabicText: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ',
+                translation: 'پاک و منزه است خدا و ستایش او را به تعداد آفریدگانش، به اندازه خشنودی ذاتش، به وزن عرشش و به روشنایی و مرکب کلماتش.',
+                category: 'morning',
+                source: 'صحیح مسلم',
+                book: 'الذکر والدعاء',
+                chapter: 'التسبيح أول النهار',
+                hadithNumber: '2726',
+                narrator: 'جويرية بنت الحارث أم المؤمنين رضي الله عنها',
+                repeatCount: 3,
+                timeContext: 'ابتدای صبح (۳ بار)'
+            },
+            {
+                id: 'm10',
+                title: 'تهلیل ۱۰۰ بار در روز (برابری با آزاد کردن ۱۰ بنده)',
+                arabicText: 'لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
+                translation: 'هیچ معبودی به حق جز الله نیست، یگانه است و شریکی ندارد؛ پادشاهی و ستایش از آنِ اوست و او بر هر چیزی تواناست.',
+                category: 'morning',
+                source: 'صحیح البخاری (3293) وصحیح مسلم (2691)',
+                book: 'بدء الخلق / الذکر والدعاء',
+                chapter: 'فضل التهليل',
+                hadithNumber: '3293',
+                narrator: 'أبو هريرة رضي الله عنه',
+                repeatCount: 100,
+                timeContext: 'روزانه (۱۰۰ بار)'
+            },
+            {
+                id: 'm11',
+                title: 'دعا برای علم نافع، روزی پاک و عمل مقبول',
+                arabicText: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلاً مُتَقَبَّلاً',
+                translation: 'بار خدایا! من از تو دانشی سودمند، روزی‌ای پاک و حلال، و کرداری پذیرفته‌شده درخواست می‌کنم.',
+                category: 'morning',
+                source: 'سنن ابن ماجه (925) - صحيح',
+                book: 'إقامة الصلاة',
+                chapter: 'ما يقال بعد التسليم',
+                hadithNumber: '925',
+                narrator: 'أم سلمة أم المؤمنين رضي الله عنها',
+                repeatCount: 1,
+                timeContext: 'بعد از نماز صبح'
+            },
+
+            // EVENING ADHKAR (کاملاً مسنون و جامع)
+            {
+                id: 'e1',
+                title: 'پناه به کلمات کامل خدا از شر مخلوقات',
+                arabicText: 'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ',
+                translation: 'پناه می‌برم به کلمات کامل و بی‌نقص خداوند از شر آنچه آفریده است.',
+                category: 'evening',
+                source: 'صحیح مسلم',
+                book: 'الذکر والدعاء',
+                chapter: 'التعوذ من سوء القضاء',
+                hadithNumber: '2709',
+                narrator: 'أبو هريرة رضي الله عنه',
+                repeatCount: 3,
+                timeContext: 'غروب و شب هنگام (۳ بار - ایمنی از نیش گزندگان و شرور)'
+            },
+            {
+                id: 'e2',
+                title: 'ذکر شامگاهان و طلب خیر شب',
+                arabicText: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا',
+                translation: 'شب را سپری ساختیم در حالی که پادشاهی از آنِ خداست و حمد مخصوص الله است. هیچ معبودی جز الله نیست...',
+                category: 'evening',
+                source: 'صحیح مسلم',
+                book: 'الذکر والدعاء',
+                chapter: 'ما يقول إذا أمسى',
+                hadithNumber: '2723',
+                narrator: 'عبدالله بن مسعود رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'ابتدای شب'
+            },
+            {
+                id: 'e3',
+                title: 'استغفار و طلب سلامتی جسم و سمع و بصر',
+                arabicText: 'اللَّهُمَّ عافِنِي فِي بَدَنِي، اللَّهُمَّ عافِنِي فِي سَمْعِي، اللَّهُمَّ عافِنِي فِي بَصَرِي، لاَ إِلَهَ إِلاَّ أَنْتَ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لاَ إِلَهَ إِلاَّ أَنْتَ',
+                translation: 'خدایا! در بدنم، گوشم و چشمم سلامتی قرار ده. هیچ معبودی جز تو نیست. خدایا! از کفر، فقر و عذاب قبر به تو پناه می‌برم.',
+                category: 'evening',
+                source: 'سنن أبي داود (5090) - حسن',
+                book: 'الأدب',
+                chapter: 'ما يقول إذا أصبح',
+                hadithNumber: '5090',
+                narrator: 'أبو بكرة رضي الله عنه',
+                repeatCount: 3,
+                timeContext: 'صبح و شام (۳ بار)'
+            },
+            {
+                id: 'e4',
+                title: 'دعا بر پیامبر اسلام (صلوات مسنون)',
+                arabicText: 'اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ',
+                translation: 'بار خدایا! بر پیامبر ما محمد درود و سلام بفرست.',
+                category: 'evening',
+                source: 'مجمع الزوائد للطبراني (10/120) - ترغيب وترهيب',
+                book: 'الاذكار',
+                chapter: 'الصلاة على النبي',
+                hadithNumber: '10/120',
+                narrator: 'أبو الدرداء رضي الله عنه',
+                repeatCount: 10,
+                timeContext: 'صبح و شام (۱۰ بار - دریافت شفاعت)'
+            },
+
+            // ADHKAR AFTER PRAYER (اذکار بعد از نماز)
+            {
+                id: 'pr1',
+                title: 'استغفار و ذکر سلام بعد از سلام نماز',
+                arabicText: 'أَسْتَغْفِرُ اللَّهَ (۳ بار)... اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ، تَبَارَكْتَ يَا ذَا الْجَلاَلِ وَالإِكْرَامِ',
+                translation: 'از خدا طلب آمرزش می‌کنم. خدایا! تو سلامی و سلامتی از جانب توست، بزرگوار و والامقامی ای دارنده جلال و اکرام.',
+                category: 'prayer',
+                source: 'صحیح مسلم',
+                book: 'المساجد ومواضع الصلاة',
+                chapter: 'استحباب الذكر بعد الصلاة',
+                hadithNumber: '591',
+                narrator: 'ثوبان مولى رسول الله ﷺ',
+                repeatCount: 1,
+                timeContext: 'بلافاصله پس از سلام نماز'
+            },
+            {
+                id: 'pr2',
+                title: 'تسبیحات فاطمی ۳۳ بار بعد از هر نماز',
+                arabicText: 'سُبْحَانَ اللَّهِ (۳۳ بار) - الْحَمْدُ لِلَّهِ (۳۳ بار) - اللَّهُ أَكْبَرُ (۳۳ بار) ... ثُمَّ يَقُولُ: لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
+                translation: 'پاک و منزه است خدا، سپاس خدا را، خدا بزرگتر است... و سپس تکمیل با کلمه توحید برای بخشش گناهان حتی به اندازه کف دریا.',
+                category: 'prayer',
+                source: 'صحیح مسلم',
+                book: 'المساجد',
+                chapter: 'استحباب الذكر بعد الصلاة',
+                hadithNumber: '597',
+                narrator: 'أبو هريرة رضي الله عنه',
+                repeatCount: 33,
+                timeContext: 'پس از تمامی نمازهای پنج‌گانه'
+            },
+            {
+                id: 'pr3',
+                title: 'آیة الکرسی بعد از هر نماز فرض (فاصله تا بهشت)',
+                arabicText: 'اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...',
+                translation: 'هرکس بعد از هر نماز فرض آیة الکرسی بخواند، هیچ چیز مانع ورود او به بهشت نمی‌شود مگر مرگ.',
+                category: 'prayer',
+                source: 'سنن النسائي الكبرى (9928) - صححه الألباني',
+                book: 'عمل اليوم والليلة',
+                chapter: 'ما يقال دبر كل صلاة',
+                hadithNumber: '9928',
+                narrator: 'أبو أمامة الباهلي رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'تعقیب تمام نمازهای واجب'
+            },
+
+            // SLEEP ADHKAR
+            {
+                id: 's1',
+                title: 'دعای نهادن پهلو بر زمین',
+                arabicText: 'بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي وَبِكَ أَرْفَعُهُ، إِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِينَ',
+                translation: 'پروردگارا! با نام تو پهلویم را بر زمین نهادم و با نام تو آن را برمی‌دارم. اگر جانم را گرفتی بر آن رحم کن...',
+                category: 'sleep',
+                source: 'صحیح البخاری (6320) وصحیح مسلم (2714)',
+                book: 'الدعوات / الذکر والدعاء',
+                chapter: 'ما يقول إذا نام',
+                hadithNumber: '6320 / 2714',
+                narrator: 'أبو هريرة رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'قبل از خواب'
+            },
+            {
+                id: 's2',
+                title: 'خواندن دو آیه آخر سوره بقره (آمن الرسول)',
+                arabicText: 'آمَنَ الرَّسُولُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُونَ... لاَ يُكَلِّفُ اللَّهُ نَفْسًا إِلاَّ وُسْعَهَا...',
+                translation: 'پیامبر به آنچه از جانب پروردگارش بر او نازل شده ایمان آورده و مؤمنان نیز... خدا هیچ کس را جز به اندازه توانش تکلیف نمی‌کند...',
+                category: 'sleep',
+                source: 'صحیح البخاری (5009) وصحیح مسلم (807)',
+                book: 'فضائل القرآن',
+                chapter: 'فضل الآيتين من آخر سورة البقرة',
+                hadithNumber: '5009 / 807',
+                narrator: 'أبو مسعود البدري رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'شب‌ها قبل خواب (کفایت از هر بدی)'
+            },
+            {
+                id: 's3',
+                title: 'دعای تسلیم امر به خدا هنگام خواب',
+                arabicText: 'اللَّهُمَّ أَسْلَمْتُ نَفْسِي إِلَيْكَ، وَفَوَّضْتُ أَمْرِي إِلَيْكَ، وَوَجَّهْتُ وَجْهِي إِلَيْكَ، وَأَلْجَأْتُ ظَهْرِي إِلَيْكَ، رَغْبَةً وَرَهْبَةً إِلَيْكَ',
+                translation: 'بار خدایا! خویشتن را به تو تسلیم کردم و کارم را به تو واگذار نمودم و رویم را به سوی تو گرداندم...',
+                category: 'sleep',
+                source: 'صحیح البخاری (6313) وصحیح مسلم (2710)',
+                book: 'الدعوات',
+                chapter: 'الضجوع على الشق الأيمن',
+                hadithNumber: '6313',
+                narrator: 'البراء بن عازب رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'آخرین کلام قبل خواب'
+            },
+
+            // WAKING UP
+            {
+                id: 'w1',
+                title: 'دعای بیدار شدن از خواب',
+                arabicText: 'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ',
+                translation: 'ستایش خدایی را که ما را پس از مردن (خواب) زنده ساخت و رستاخیز به سوی اوست.',
+                category: 'waking',
+                source: 'صحیح البخاری (6312) وصحیح مسلم (2711)',
+                book: 'الدعوات',
+                chapter: 'ما يقول إذا استيقظ',
+                hadithNumber: '6312 / 2711',
+                narrator: 'حذيفة بن اليمان رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'بلافاصله پس از بیداری'
+            },
+
+            // PROPHETS DUA (دعاهای انبیاء علیهم السلام)
+            {
+                id: 'p1',
+                title: 'دعای حضرت آدم (ع)',
+                arabicText: 'رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ',
+                translation: 'پروردگارا! ما به خویشتن ستم کردیم و اگر ما را نبخشی و بر ما رحم نکنی، مسلماً از زیانکاران خواهیم بود.',
+                category: 'prophets',
+                source: 'القرآن الكريم - سورة الأعراف (۲۳)',
+                book: 'تفسیر / دعاهای قرآن',
+                chapter: 'دعاء آدم عليه السلام',
+                hadithNumber: 'آیه ۲۳',
+                narrator: 'قرآن کریم',
+                repeatCount: 1,
+                timeContext: 'توبه و استغفار'
+            },
+            {
+                id: 'p4',
+                title: 'دعای حضرت یونس (ع) - ذکر ذوالنون (رفع هر غم)',
+                arabicText: 'لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ',
+                translation: 'هیچ معبودی به حق جز تو نیست، پاک و منزهی تو، بی‌گمان من از ستمکاران بودم.',
+                category: 'prophets',
+                source: 'سنن الترمذي (3505) - صححه الألباني',
+                book: 'الدعوات',
+                chapter: 'دعوة ذي النون',
+                hadithNumber: '3505',
+                narrator: 'سعد بن أبي وقاص رضي الله عنه',
+                repeatCount: 3,
+                timeContext: 'رفع گرفتاری، اندوه و اجابت دعا'
+            },
+            {
+                id: 'p5',
+                title: 'دعای حضرت موسی (ع) - گشایش کار و زبان',
+                arabicText: 'رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي أَمْرِي * وَاحْلُلْ عُقْدَةً مِّن لِّسَانِي * يَفْقَهُوا قَوْلِي',
+                translation: 'پروردگارا! سینه‏ام را گشاده گردان و کارم را برایم آسان ساز و گره از زبانم بگشای تا سخنم را بفهمند.',
+                category: 'prophets',
+                source: 'القرآن الكريم - سورة طه (۲۵-۲۸)',
+                book: 'تفسیر / دعاهای قرآن',
+                chapter: 'دعاء موسى عليه السلام',
+                hadithNumber: 'آیات ۲۵-۲۸',
+                narrator: 'قرآن کریم',
+                repeatCount: 1,
+                timeContext: 'شروع کارهای مهم و صحبت در جمع'
+            },
+            {
+                id: 'p6',
+                title: 'دعای حضرت موسی (ع) - طلب رزق و خیر الهی',
+                arabicText: 'رَبِّ إِنِّي لِمَا أَنزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ',
+                translation: 'پروردگارا! من به هر خیری که به سویم بفرستی سخت نیازمندم.',
+                category: 'prophets',
+                source: 'القرآن الكريم - سورة القصص (۲۴)',
+                book: 'تفسیر / دعاهای قرآن',
+                chapter: 'دعاء موسى عليه السلام في مدين',
+                hadithNumber: 'آیه ۲۴',
+                narrator: 'قرآن کریم',
+                repeatCount: 1,
+                timeContext: 'طلب کار، ازدواج و رزق پاک'
+            },
+            {
+                id: 'p7',
+                title: 'دعای جامع پیامبر ﷺ - خیر دنیا و آخرت',
+                arabicText: 'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',
+                translation: 'پروردگارا! در دنیا به ما نیکی و در آخرت نیز نیکی عطا فرما و ما را از عذاب آتش دوزخ نگاه دار.',
+                category: 'general',
+                source: 'صحیح البخاری (6389) وصحیح مسلم (2690)',
+                book: 'الدعوات',
+                chapter: 'أكثر دعاء النبي ﷺ',
+                hadithNumber: '6389',
+                narrator: 'أنس بن مالك رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'پُرکاربردترین دعای رسول‌الله ﷺ'
+            },
+
+            // SCHOLARS & COMPREHENSIVE DUAS
+            {
+                id: 'p8',
+                title: 'دعای ثبات قدم بر دین و هدایت',
+                arabicText: 'يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ',
+                translation: 'ای گرداننده دل‌ها! دلم را بر دینت استوار و ثابت بگردان.',
+                category: 'scholars',
+                source: 'سنن الترمذي (3522) - صحيح',
+                book: 'الدعوات',
+                chapter: 'ما جاء في ثبات القلوب',
+                hadithNumber: '3522',
+                narrator: 'أم سلمة رضي الله عنها',
+                repeatCount: 3,
+                timeContext: 'حفظ ایمان و عاقبت به‌خیری'
+            },
+            {
+                id: 'p9',
+                title: 'دعای طلب توفیق شکر، ذکر و عبادد',
+                arabicText: 'اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ',
+                translation: 'بار خدایا! مرا بر یاد خودت، سپاسگزاری‌ات و نیکو انجام دادن عباددت یاری فرما.',
+                category: 'scholars',
+                source: 'سنن أبي داود (1522) - صححه النووي',
+                book: 'الصلاة',
+                chapter: 'ما يقول بعد التسليم',
+                hadithNumber: '1522',
+                narrator: 'معاذ بن جبل رضي الله عنه',
+                repeatCount: 1,
+                timeContext: 'پایان هر نماز و هنگام اذکار'
+            },
+            {
+                id: 'p10',
+                title: 'دعای طلب عفو و بخشش الهی',
+                arabicText: 'اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي',
+                translation: 'بار خدایا! تو بس بخشنده و گذشت‌کننده‌ای و بخشش را دوست داری، پس از من بگذر و مرا ببخش.',
+                category: 'scholars',
+                source: 'سنن الترمذي (3513) - صحيح',
+                book: 'الدعوات',
+                chapter: 'العفو والعافية',
+                hadithNumber: '3513',
+                narrator: 'عائشة أم المؤمنين رضي الله عنها',
+                repeatCount: 1,
+                timeContext: 'اوقات مبارک و شب‌های قدر'
+            }
+        ];
+
+        const AppState = {
+            currentView: 'today',
+            favorites: JSON.parse(localStorage.getItem('hisn_favorites') || '[]'),
+            history: JSON.parse(localStorage.getItem('hisn_history') || '[]'),
+            totalCount: parseInt(localStorage.getItem('hisn_total_count') || '0'),
+            soundEnabled: true,
+            vibrateEnabled: true,
+            fontSize: parseInt(localStorage.getItem('hisn_font_size') || '24'),
+            
+            // Sequence state
+            sequenceItems: [],
+            sequenceIndex: 0,
+            sequenceTapCount: 0,
+
+            // Counter state
+            counterVal: 0,
+            counterTarget: 33
+        };
+
+        function playClickSound() {
+            if (!AppState.soundEnabled) return;
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.05);
+            } catch (e) {}
+        }
+
+        function triggerVibration() {
+            if (AppState.vibrateEnabled && navigator.vibrate) {
+                navigator.vibrate(35);
+            }
+        }
+
+        function navigateTo(viewId) {
+            document.querySelectorAll('.view-panel').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById(`view-${viewId}`);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.nav === viewId) {
+                    btn.classList.add('text-emerald-600', 'dark:text-emerald-400');
+                    btn.classList.remove('text-slate-400');
+                } else {
+                    btn.classList.remove('text-emerald-600', 'dark:text-emerald-400');
+                    btn.classList.add('text-slate-400');
+                }
+            });
+
+            AppState.currentView = viewId;
+            if (viewId === 'stats') renderStatsView();
+        }
+
+        function renderRecentList() {
+            const container = document.getElementById('recent-list-container');
+            if (!container) return;
+
+            const itemsToShow = AUTHENTIC_DATABASE.slice(0, 3);
+            container.innerHTML = itemsToShow.map(item => `
+                <div class="bg-white dark:bg-sand-800 p-3.5 rounded-2xl border border-slate-100 dark:border-sand-800 shadow-sm flex items-center justify-between">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-slate-800 dark:text-slate-100">${item.title}</span>
+                            <span class="text-[9px] px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 font-medium">${item.source}</span>
+                        </div>
+                        <p class="font-arabic text-sm text-emerald-800 dark:text-emerald-300 line-clamp-1">${item.arabicText}</p>
+                    </div>
+                    <button onclick="startSingleCounter('${item.id}')" class="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs hover:bg-emerald-600 hover:text-white transition">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function renderCategories() {
+            const categoriesGrid = document.getElementById('categories-grid');
+            if (!categoriesGrid) return;
+
+            const cats = [
+                { id: 'morning', title: 'اذکار صبح', icon: 'fa-sun', count: '۱۱ ذکر' },
+                { id: 'evening', title: 'اذکار شام', icon: 'fa-moon', count: '۹ ذکر' },
+                { id: 'sleep', title: 'قبل از خواب', icon: 'fa-bed', count: '۷ ذکر' },
+                { id: 'waking', title: 'بیدار شدن', icon: 'fa-sun-plant-wilt', count: '۴ ذکر' },
+                { id: 'prophets', title: 'دعاهای پیامبران', icon: 'fa-hands-praying', count: '۷ دعا' },
+                { id: 'scholars', title: 'ادعیه اثبات‌شده و جامع', icon: 'fa-book-quran', count: '۳ دعا' },
+                { id: 'prayer', title: 'اذکار نماز', icon: 'fa-mosque', count: '۱۵ ذکر' },
+                { id: 'general', title: 'دعاهای جامع', icon: 'fa-hands-holding-child', count: '۲۰ ذکر' }
+            ];
+
+            categoriesGrid.innerHTML = cats.map(c => `
+                <button onclick="startCategorySequence('${c.id}')" class="bg-white dark:bg-sand-800 p-4 rounded-2xl border border-slate-100 dark:border-sand-800 shadow-sm flex items-center justify-between hover:border-emerald-300 transition text-right">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid ${c.icon}"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xs text-slate-800 dark:text-slate-100">${c.title}</h4>
+                            <span class="text-[10px] text-slate-400">${c.count}</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-xs text-slate-300"></i>
+                </button>
+            `).join('');
+        }
+
+        function renderSahihaynList(filter = 'all') {
+            const container = document.getElementById('sahihayn-list');
+            if (!container) return;
+
+            let filtered = AUTHENTIC_DATABASE;
+            if (filter === 'bukhari') filtered = AUTHENTIC_DATABASE.filter(d => d.source.includes('البخاري'));
+            if (filter === 'muslim') filtered = AUTHENTIC_DATABASE.filter(d => d.source.includes('مسلم'));
+
+            container.innerHTML = filtered.map(item => `
+                <div class="bg-white dark:bg-sand-800 p-4 rounded-2xl border border-slate-100 dark:border-sand-800 shadow-sm space-y-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-xs text-slate-800 dark:text-slate-100">${item.title}</h4>
+                            <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">${item.source}</span>
+                        </div>
+                        <button onclick="toggleFavorite('${item.id}')" class="text-slate-300 hover:text-rose-500 transition">
+                            <i class="fa-${AppState.favorites.includes(item.id) ? 'solid text-rose-500' : 'regular'} fa-heart text-sm"></i>
+                        </button>
+                    </div>
+
+                    <p class="font-arabic text-xl font-bold text-emerald-900 dark:text-emerald-200 text-center py-2 leading-relaxed">
+                        ${item.arabicText}
+                    </p>
+
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed bg-sand-50 dark:bg-sand-900 p-3 rounded-xl">
+                        ${item.translation}
+                    </p>
+
+                    <div class="flex justify-between items-center text-[10px] text-slate-400 pt-1">
+                        <span>راوی: ${item.narrator || 'صحابی رسول الله'}</span>
+                        <span>حديث رقم: ${item.hadithNumber}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function startCategorySequence(type) {
+            AppState.sequenceItems = AUTHENTIC_DATABASE.filter(i => i.category === type);
+            if (AppState.sequenceItems.length === 0) {
+                AppState.sequenceItems = AUTHENTIC_DATABASE;
+            }
+            AppState.sequenceIndex = 0;
+            AppState.sequenceTapCount = 0;
+            updateSequenceUI();
+            document.getElementById('overlay-sequence').classList.remove('hidden');
+        }
+
+        function updateSequenceUI() {
+            const current = AppState.sequenceItems[AppState.sequenceIndex];
+            if (!current) return;
+
+            document.getElementById('sequence-title').textContent = current.title;
+            document.getElementById('sequence-counter-label').textContent = `ذکر ${AppState.sequenceIndex + 1} از ${AppState.sequenceItems.length}`;
+            document.getElementById('seq-source-badge').textContent = current.source;
+            document.getElementById('seq-repeat-badge').textContent = `تکرار: ${current.repeatCount} بار`;
+            document.getElementById('seq-arabic-text').textContent = current.arabicText;
+            document.getElementById('seq-trans-text').textContent = current.translation;
+            document.getElementById('seq-narrator').textContent = `راوی: ${current.narrator}`;
+            document.getElementById('seq-book-chapter').textContent = `کتاب: ${current.book} | باب: ${current.chapter}`;
+
+            document.getElementById('seq-count-progress').textContent = `${AppState.sequenceTapCount} / ${current.repeatCount}`;
+
+            document.getElementById('btn-seq-prev').disabled = AppState.sequenceIndex === 0;
+            document.getElementById('btn-seq-next').disabled = AppState.sequenceIndex === AppState.sequenceItems.length - 1;
+        }
+
+        function renderStatsView() {
+            document.getElementById('stat-total-dhikr').textContent = AppState.totalCount.toLocaleString('fa-IR');
+
+            const chartContainer = document.getElementById('weekly-chart');
+            if (chartContainer) {
+                const days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
+                chartContainer.innerHTML = days.map((d, i) => {
+                    const heightPct = Math.min(100, (i + 1) * 15);
+                    return `
+                        <div class="flex flex-col items-center gap-1 flex-1">
+                            <div class="w-full bg-slate-100 dark:bg-sand-900 rounded-t-lg h-full flex items-end overflow-hidden">
+                                <div class="w-full bg-emerald-600 rounded-t-lg transition-all duration-500" style="height: ${heightPct}%"></div>
+                            </div>
+                            <span class="text-[9px] text-slate-400">${d}</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Initialize Lists
+            renderRecentList();
+            renderCategories();
+            renderSahihaynList();
+
+            // Open / Close About Modal
+            const btnOpenAbout = document.getElementById('btn-open-about');
+            const overlayAbout = document.getElementById('overlay-about');
+            const btnCloseAbout = document.getElementById('btn-close-about');
+
+            if (btnOpenAbout && overlayAbout) {
+                btnOpenAbout.addEventListener('click', () => {
+                    document.getElementById('drawer-menu').classList.add('hidden');
+                    overlayAbout.classList.remove('hidden');
+                });
+            }
+
+            if (btnCloseAbout && overlayAbout) {
+                btnCloseAbout.addEventListener('click', () => {
+                    overlayAbout.classList.add('hidden');
+                });
+            }
+
+            // Bottom Navigation
+            document.querySelectorAll('[data-nav]').forEach(btn => {
+                btn.addEventListener('click', () => navigateTo(btn.dataset.nav));
+            });
+
+            // Action triggers
+            document.querySelectorAll('[data-action="open-dhikr-sequence"]').forEach(btn => {
+                btn.addEventListener('click', () => startCategorySequence(btn.dataset.type));
+            });
+
+            // Drawer navigation
+            document.getElementById('btn-menu').addEventListener('click', () => {
+                document.getElementById('drawer-menu').classList.remove('hidden');
+            });
+            document.getElementById('drawer-menu').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('drawer-menu')) {
+                    document.getElementById('drawer-menu').classList.add('hidden');
+                }
+            });
+
+            // Sequence modal controls
+            document.getElementById('btn-close-sequence').addEventListener('click', () => {
+                document.getElementById('overlay-sequence').classList.add('hidden');
+            });
+
+            document.getElementById('btn-seq-count-tap').addEventListener('click', () => {
+                const current = AppState.sequenceItems[AppState.sequenceIndex];
+                playClickSound();
+                triggerVibration();
+                AppState.sequenceTapCount++;
+                AppState.totalCount++;
+                localStorage.setItem('hisn_total_count', AppState.totalCount);
+
+                if (AppState.sequenceTapCount >= current.repeatCount) {
+                    if (AppState.sequenceIndex < AppState.sequenceItems.length - 1) {
+                        AppState.sequenceIndex++;
+                        AppState.sequenceTapCount = 0;
+                    }
+                }
+                updateSequenceUI();
+            });
+
+            document.getElementById('btn-seq-next').addEventListener('click', () => {
+                if (AppState.sequenceIndex < AppState.sequenceItems.length - 1) {
+                    AppState.sequenceIndex++;
+                    AppState.sequenceTapCount = 0;
+                    updateSequenceUI();
+                }
+            });
+
+            document.getElementById('btn-seq-prev').addEventListener('click', () => {
+                if (AppState.sequenceIndex > 0) {
+                    AppState.sequenceIndex--;
+                    AppState.sequenceTapCount = 0;
+                    updateSequenceUI();
+                }
+            });
+
+            // Dedicated Tasbeeh counter handlers
+            const counterTapBtn = document.getElementById('btn-counter-tap');
+            if (counterTapBtn) {
+                counterTapBtn.addEventListener('click', () => {
+                    playClickSound();
+                    triggerVibration();
+                    AppState.counterVal++;
+                    AppState.totalCount++;
+                    localStorage.setItem('hisn_total_count', AppState.totalCount);
+
+                    document.getElementById('counter-big-val').textContent = AppState.counterVal.toLocaleString('fa-IR');
+                    const pct = Math.min(100, (AppState.counterVal / AppState.counterTarget) * 100);
+                    document.getElementById('counter-progress-bar').style.width = `${pct}%`;
+                });
+            }
+
+            document.getElementById('btn-counter-reset').addEventListener('click', () => {
+                AppState.counterVal = 0;
+                document.getElementById('counter-big-val').textContent = '۰';
+                document.getElementById('counter-progress-bar').style.width = '0%';
+            });
+
+            document.getElementById('counter-target-select').addEventListener('change', (e) => {
+                AppState.counterTarget = parseInt(e.target.value);
+                document.getElementById('counter-target-label').textContent = `از ${AppState.counterTarget}`;
+            });
+
+            // Focus Mode Handler
+            document.getElementById('btn-focus-mode').addEventListener('click', () => {
+                document.getElementById('overlay-focus').classList.remove('hidden');
+            });
+            document.getElementById('btn-close-focus').addEventListener('click', () => {
+                document.getElementById('overlay-focus').classList.add('hidden');
+            });
+
+            // Search Overlay
+            document.getElementById('btn-search-trigger').addEventListener('click', () => {
+                document.getElementById('overlay-search').classList.remove('hidden');
+            });
+            document.getElementById('btn-close-search').addEventListener('click', () => {
+                document.getElementById('overlay-search').classList.add('hidden');
+            });
+
+            // Search Filter Logic
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                const query = e.target.value.trim().toLowerCase();
+                const container = document.getElementById('search-results-container');
+                if (!query) {
+                    container.innerHTML = '<p class="text-xs text-slate-400 text-center py-8">عبارت مورد نظر خود را وارد کنید</p>';
+                    return;
+                }
+
+                const matches = AUTHENTIC_DATABASE.filter(item => 
+                    item.title.toLowerCase().includes(query) ||
+                    item.arabicText.includes(query) ||
+                    item.translation.includes(query) ||
+                    item.source.toLowerCase().includes(query)
+                );
+
+                if (matches.length === 0) {
+                    container.innerHTML = '<p class="text-xs text-slate-400 text-center py-8">هیچ موردی یافت نشد.</p>';
+                } else {
+                    container.innerHTML = matches.map(item => `
+                        <div class="bg-white dark:bg-sand-800 p-3.5 rounded-2xl border border-slate-100 dark:border-sand-800 shadow-sm space-y-1">
+                            <span class="text-xs font-bold text-slate-800 dark:text-slate-100">${item.title}</span>
+                            <p class="font-arabic text-sm text-emerald-800 dark:text-emerald-300">${item.arabicText}</p>
+                            <span class="text-[10px] text-slate-400 block">${item.source}</span>
+                        </div>
+                    `).join('');
+                }
+            });
+
+            // Sahihayn Tabs
+            document.getElementById('tab-sahih-all').addEventListener('click', () => renderSahihaynList('all'));
+            document.getElementById('tab-sahih-bukhari').addEventListener('click', () => renderSahihaynList('bukhari'));
+            document.getElementById('tab-sahih-muslim').addEventListener('click', () => renderSahihaynList('muslim'));
+
+            // Font Size Setting
+            document.getElementById('setting-font-size').addEventListener('input', (e) => {
+                const size = e.target.value;
+                document.getElementById('font-size-label').textContent = `${size}px`;
+                document.querySelectorAll('.font-arabic').forEach(el => {
+                    el.style.fontSize = `${size}px`;
+                });
+            });
+
+            // Theme Toggle
+            document.getElementById('setting-theme').addEventListener('change', (e) => {
+                const val = e.target.value;
+                if (val === 'dark' || (val === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            });
+        });
+
+        // Global Helper Functions
+        function toggleFavorite(id) {
+            if (AppState.favorites.includes(id)) {
+                AppState.favorites = AppState.favorites.filter(fav => fav !== id);
+            } else {
+                AppState.favorites.push(id);
+            }
+            localStorage.setItem('hisn_favorites', JSON.stringify(AppState.favorites));
+            renderSahihaynList();
+        }
+
+        function startSingleCounter(id) {
+            const item = AUTHENTIC_DATABASE.find(i => i.id === id);
+            if (item) {
+                AppState.sequenceItems = [item];
+                AppState.sequenceIndex = 0;
+                AppState.sequenceTapCount = 0;
+                updateSequenceUI();
+                document.getElementById('overlay-sequence').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
